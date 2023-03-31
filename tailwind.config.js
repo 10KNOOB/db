@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         popins: ["Poppins", "sans-serif"],
         heebo: ["Heebo", "sans-serif"],
+        paytone: ["Paytone One", "sans-serif"],
       },
     },
   },

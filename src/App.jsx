@@ -1,17 +1,13 @@
 import Navbar from "./global/Navbar";
-import Hero from "./home/Hero";
-import ProjectsSample from "./home/ProjectsSample";
 import Cursor from "./components/Cursor";
+import HomeIndex from "./home/HomeIndex";
 
 function App() {
   return (
     <div>
       <Cursor />
       <Navbar />
-      <>
-        <Hero />
-        <ProjectsSample />
-      </>
+      <HomeIndex />
     </div>
   );
 }
