@@ -7,6 +7,7 @@ module.exports = {
         popins: ["Poppins", "sans-serif"],
         heebo: ["Heebo", "sans-serif"],
         paytone: ["Paytone One", "sans-serif"],
+        cousine: ["Cousine", "monospace"],
       },
     },
   },

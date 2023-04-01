@@ -66,6 +66,16 @@
   src: url(./assets/fonts/Paytone_One/PaytoneOne-Regular.ttf);
 }
 
+@font-face {
+  font-family: "Cousine", monospace;
+  src: url(./assets/fonts/Cousine/Cousine-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Cousine", monospace;
+  src: url(./assets/fonts/Cousine/Cousine-Bold.ttf);
+}
+
 @keyframes rotate {
   from {
     rotate: 0deg;
@@ -121,7 +131,7 @@
 }
 
 body {
-  background-color: rgba(5, 7, 37, 0.962);
+  background-color: rgb(0, 0, 0);
   margin: 0rem;
 }
 
@@ -154,5 +164,17 @@ body {
 @layer components {
   .container {
     @apply max-w-[1300px] mx-auto px-2;
+  }
+}
+
+@layer utilities {
+  /* This two helpers apply a -50% to the translate x/y, and add
+   * a --y/--x css variable to it. This util is only here to make writing this class
+   * a bit easier to read in the HTML :)   */
+  .translate-y-centered-offset {
+    @apply translate-y-[calc(-50%_+_var(--y))];
+  }
+  .translate-x-centered-offset {
+    @apply translate-x-[calc(-50%_+_var(--x))];
   }
 }

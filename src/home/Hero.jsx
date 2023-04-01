@@ -1,51 +1,51 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import TextRandomize from "../components/TextRandomize";
-import VanillaTilt from "vanilla-tilt";
-import GlitchGif from "../assets/glitch.gif";
-
-function Tilt(props) {
-  const { options, ...rest } = props;
-  const tilt = useRef(null);
-
-  useEffect(() => {
-    VanillaTilt.init(tilt.current, options);
-  }, [options]);
-
-  return <div ref={tilt} {...rest} />;
-}
+import { useScroll, useTransform, motion } from "framer-motion";
+import { useRef } from "react";
 
 const Hero = () => {
-  const options = {
-    speed: 100,
-    max: 10,
-    reverse: true,
-  };
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["end end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const position = useTransform(scrollYProgress, (pos) => {
+    return pos === 1 ? "relative" : "fixed";
+  });
 
   return (
-    <div className="container">
-      <div className="relative z-10 py-32">
-        <div className="flex flex-col justify-center font-black text-gray-200 text-9xl items-center font-paytone tracking-[-0.05em] leading-[6rem] text-center">
-          <div className="relative">
-            <Tilt options={options}>
-              <div className="reltaive h-[500px] w-[600px]">
-                <img
-                  src={GlitchGif}
-                  alt=""
-                  className="rounded-xl object-cover w-full h-full"
-                />
-              </div>
-              <div className="absolute bg-black h-full w-full top-0 left-0 z-20 rounded-xl bg-opacity-70 "></div>
-            </Tilt>
+    <motion.section
+      style={{ opacity }}
+      ref={targetRef}
+      className=" h-screen -mt-20 text-white container flex justify-center items-center"
+    >
+      <motion.div
+        style={{ scale, position }}
+        className="flex flex-col items-center"
+      >
+        <div className="text-white font-normal text-center">
+          <h3 className="text-2xl">Hi, welcome to</h3>
 
-            <div className="absolute top-0 -left-10 z-30 lowercase">
-              <h1>let's create</h1>
-              <h1>something </h1>
-              <h1>amazing</h1>
-            </div>
-          </div>
+          <span className="text-4xl font-cousine font-bold">
+            <TextRandomize text="Decentralized Brains" />
+          </span>
+          <h3 className="text-gray-300 pt-10 text-2xl">
+            Want to adopt Blockchain? You're in the right place!
+          </h3>
+          <p className="text-white pt-5 max-w-lg">
+            Interested in using blockchain in your business? We provide
+            customized blockchain services to help organizations and startups
+            quickly integrate and deploy blockchain technology
+          </p>
+          <p className=" text-yellow-500 ">
+            Let's create something amazing together...
+          </p>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.section>
   );
 };
 

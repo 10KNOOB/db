@@ -44,8 +44,8 @@ const Navbar = () => {
       <div
         className={
           shadow
-            ? "fixed w-full h-[70px] duration-300 z-[100] shadow-lg backdrop-blur-xl"
-            : "fixed w-full h-[70px] duration-300 z-[100] "
+            ? "relative w-full h-[70px] duration-300 z-[100] "
+            : "relative w-full h-[70px] duration-300 z-[100] "
         }
       >
         {/* this is for large screen devices */}
